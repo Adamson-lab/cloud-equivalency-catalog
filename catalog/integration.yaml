@@ -1,0 +1,54 @@
+category: integration
+title: Messaging & Integration
+entries:
+  - id: message-queue
+    name: Message queue
+    description: Point-to-point asynchronous messaging with at-least-once delivery.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: Amazon SQS, fit: exact}
+      azure: {service: Azure Service Bus Queues / Storage Queues, fit: exact}
+      gcp: {service: Pub/Sub (pull subscriptions) / Cloud Tasks, fit: close}
+      oci: {service: OCI Queue, fit: exact}
+  - id: pub-sub
+    name: Publish/subscribe notifications
+    description: Fan-out messaging to many subscribers and endpoints.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: Amazon SNS, fit: exact}
+      azure: {service: Azure Service Bus Topics / Event Grid, fit: close}
+      gcp: {service: Pub/Sub, fit: exact}
+      oci: {service: OCI Notifications, fit: close}
+  - id: event-bus
+    name: Event bus / event routing
+    description: Rule-based routing of events from cloud and SaaS sources to targets.
+    migration_complexity: high
+    lock_in_risk: high
+    offerings:
+      aws: {service: Amazon EventBridge, fit: exact}
+      azure: {service: Azure Event Grid, fit: exact}
+      gcp: {service: Eventarc, fit: exact}
+      oci: {service: OCI Events, fit: close}
+  - id: workflow-orchestration
+    name: Serverless workflow orchestration
+    description: Stateful, managed orchestration of multi-step processes.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Workflow definition languages are proprietary and embed service integrations; treat as a rewrite.
+    offerings:
+      aws: {service: AWS Step Functions, fit: exact}
+      azure: {service: Azure Logic Apps / Durable Functions, fit: exact}
+      gcp: {service: Workflows, fit: exact}
+      oci: {service: No first-party equivalent, fit: none, notes: "Compose with OCI Functions and Events, or use an open-source orchestrator such as Temporal or Airflow."}
+  - id: api-gateway
+    name: API gateway / management
+    description: Publish, secure, throttle and monitor APIs.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: Amazon API Gateway, fit: exact}
+      azure: {service: Azure API Management, fit: exact}
+      gcp: {service: Apigee / API Gateway, fit: exact}
+      oci: {service: OCI API Gateway, fit: close, notes: "Lighter on developer-portal and monetization features."}

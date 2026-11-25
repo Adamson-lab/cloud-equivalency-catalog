@@ -1,0 +1,44 @@
+service,monthly_cost_usd,workload
+Amazon EC2,184000,core banking batch + legacy apps
+Amazon RDS for PostgreSQL,96000,customer master
+Amazon Aurora,142000,payments ledger
+Amazon DynamoDB,61000,session and idempotency state
+Amazon S3,48000,data lake landing zone
+Amazon S3 Glacier,9000,7-year record retention
+Amazon EBS,37000,VM volumes
+Amazon EFS,12000,shared batch files
+Amazon EKS,54000,digital channels
+AWS Fargate,21000,internal APIs
+AWS Lambda,33000,event glue and notifications
+AWS Step Functions,14000,loan origination workflow
+Amazon EventBridge,6000,domain events
+Amazon SQS,5000,payment queues
+Amazon SNS,3000,alerts fan-out
+Amazon MSK,47000,transaction streaming
+Amazon Kinesis Data Streams,18000,clickstream
+Amazon Redshift,128000,enterprise warehouse
+AWS Glue,39000,ETL
+Amazon EMR,52000,risk model batch
+Amazon QuickSight,11000,exec dashboards
+Amazon SageMaker,76000,fraud models
+Amazon Bedrock,29000,agent assist
+Amazon Textract,8000,KYC document intake
+AWS Direct Connect,16000,data center links
+AWS Transit Gateway,7000,network hub
+AWS PrivateLink,4000,private service access
+Amazon CloudFront,22000,online banking edge
+AWS WAF,9000,web protection
+AWS Network Firewall,13000,egress inspection
+AWS KMS,6000,encryption keys
+AWS CloudHSM,24000,card PIN and signing keys
+AWS Secrets Manager,2000,app credentials
+AWS Security Hub,5000,posture management
+Amazon GuardDuty,8000,threat detection
+AWS CloudTrail,4000,audit trail
+Amazon CloudWatch,31000,observability
+AWS Config,6000,config compliance
+AWS Organizations,0,account governance
+AWS Backup,10000,backups
+AWS CloudFormation,0,provisioning
+Amazon Quantum Ledger Database,3000,legacy audit ledger
+AWS Mainframe Modernization,45000,COBOL runtime

@@ -1,0 +1,45 @@
+category: devops
+title: Developer & DevOps Tooling
+entries:
+  - id: container-registry
+    name: Container registry
+    description: Private registry for container images with scanning and replication.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon ECR, fit: exact}
+      azure: {service: Azure Container Registry, fit: exact}
+      gcp: {service: Artifact Registry, fit: exact}
+      oci: {service: OCI Container Registry, fit: exact}
+  - id: infrastructure-as-code
+    name: Native infrastructure as code
+    description: Provider-native declarative provisioning and stack management.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Native IaC templates do not port. Terraform/OpenTofu is the usual neutral layer but providers and resources still differ.
+    offerings:
+      aws: {service: AWS CloudFormation / AWS CDK, fit: exact}
+      azure: {service: Azure Resource Manager (ARM) / Bicep, fit: exact}
+      gcp: {service: Infrastructure Manager (Terraform-based), fit: partial, notes: "Deployment Manager is deprecated; Google's native path is managed Terraform rather than a proprietary template language."}
+      oci: {service: OCI Resource Manager (managed Terraform), fit: partial, notes: "Managed Terraform service rather than a proprietary template language."}
+  - id: source-control
+    name: Hosted source control
+    description: First-party Git hosting.
+    migration_complexity: low
+    lock_in_risk: low
+    exec_note: Most enterprises standardize on GitHub, GitLab or Bitbucket regardless of cloud.
+    offerings:
+      aws: {service: AWS CodeCommit, fit: close, notes: "Availability to new customers has changed over time; verify current status before adoption."}
+      azure: {service: Azure Repos (Azure DevOps), fit: exact}
+      gcp: {service: Cloud Source Repositories, fit: none, notes: "Closed to new customers in 2024; use a third-party Git platform."}
+      oci: {service: OCI DevOps code repositories, fit: close}
+  - id: ci-cd-pipelines
+    name: CI/CD pipelines
+    description: Managed build, test and deployment pipelines.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS CodeBuild / CodePipeline / CodeDeploy, fit: exact}
+      azure: {service: Azure Pipelines (Azure DevOps), fit: exact}
+      gcp: {service: Cloud Build / Cloud Deploy, fit: exact}
+      oci: {service: OCI DevOps build and deployment pipelines, fit: close}

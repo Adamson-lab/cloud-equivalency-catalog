@@ -1,0 +1,15 @@
+id: three-tier-web
+title: Internet-facing three-tier web application
+description: Customer-facing web platform with edge protection, containerized services, managed data stores and secrets.
+components:
+  - {key: edge, capability: cdn, group: Edge}
+  - {key: waf, capability: waf, group: Edge}
+  - {key: lb, capability: application-load-balancer, group: Edge}
+  - {key: k8s, capability: managed-kubernetes, group: Application}
+  - {key: secrets, capability: secrets-management, group: Application}
+  - {key: db, capability: managed-relational, group: Data}
+  - {key: cache, capability: in-memory-cache, group: Data}
+  - {key: objects, capability: object-storage, group: Data}
+  - {key: metrics, capability: monitoring-metrics, group: Operations}
+  - {key: audit, capability: audit-logging, group: Operations}
+edges: [[edge, waf], [waf, lb], [lb, k8s], [k8s, db], [k8s, cache], [k8s, objects], [k8s, secrets], [k8s, metrics], [k8s, audit]]

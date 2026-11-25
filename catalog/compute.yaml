@@ -1,0 +1,108 @@
+category: compute
+title: Compute & Containers
+entries:
+  - id: virtual-machines
+    name: Virtual machines (IaaS)
+    description: On-demand virtualized servers with choice of CPU, memory, OS and storage.
+    migration_complexity: low
+    lock_in_risk: low
+    exec_note: Commodity capability; the lift is in images, licensing and networking, not the VM itself.
+    offerings:
+      aws: {service: Amazon EC2, fit: exact}
+      azure: {service: Azure Virtual Machines, fit: exact}
+      gcp: {service: Compute Engine, fit: exact}
+      oci: {service: OCI Compute, fit: exact}
+  - id: autoscaling-groups
+    name: VM autoscaling groups
+    description: Managed pools of identical VMs that scale on metrics or schedules.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: EC2 Auto Scaling, fit: exact}
+      azure: {service: Virtual Machine Scale Sets, fit: exact}
+      gcp: {service: Managed Instance Groups, fit: exact}
+      oci: {service: Instance Pools with Autoscaling, fit: close, notes: "Fewer predictive and warm-pool options than hyperscaler peers."}
+  - id: bare-metal
+    name: Bare-metal servers
+    description: Dedicated physical servers with no hypervisor, often for licensing or performance isolation.
+    migration_complexity: medium
+    lock_in_risk: low
+    offerings:
+      aws: {service: EC2 bare metal instances, fit: exact}
+      azure: {service: Azure BareMetal Infrastructure, fit: partial, notes: "Narrower scope, primarily for specialized workloads such as SAP HANA; general bare metal is limited."}
+      gcp: {service: Bare Metal Solution, fit: partial, notes: "Aimed at specialized workloads (e.g. Oracle); not a general bare-metal fleet."}
+      oci: {service: OCI Bare Metal Instances, fit: exact, notes: "Bare metal is a first-class shape across the platform."}
+  - id: managed-kubernetes
+    name: Managed Kubernetes
+    description: Hosted Kubernetes control plane with managed node options.
+    migration_complexity: medium
+    lock_in_risk: medium
+    exec_note: Kubernetes API is portable; ingress, IAM integration, storage classes and networking plugins are not.
+    offerings:
+      aws: {service: Amazon EKS, fit: exact}
+      azure: {service: Azure Kubernetes Service (AKS), fit: exact}
+      gcp: {service: Google Kubernetes Engine (GKE), fit: exact}
+      oci: {service: Oracle Container Engine for Kubernetes (OKE), fit: exact}
+  - id: serverless-containers
+    name: Serverless containers
+    description: Run containers without managing nodes or clusters, billed per use.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS Fargate / Amazon ECS, fit: exact}
+      azure: {service: Azure Container Apps, fit: exact}
+      gcp: {service: Cloud Run, fit: exact}
+      oci: {service: OCI Container Instances, fit: partial, notes: "Runs containers without nodes but lacks the scale-to-zero, revision and traffic-splitting model of Cloud Run or Container Apps."}
+  - id: functions
+    name: Serverless functions (FaaS)
+    description: Event-driven code execution with no server management.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Triggers, bindings, IAM and event payload formats are proprietary; expect rewrite of glue code.
+    offerings:
+      aws: {service: AWS Lambda, fit: exact}
+      azure: {service: Azure Functions, fit: exact}
+      gcp: {service: Cloud Run functions (formerly Cloud Functions), fit: exact}
+      oci: {service: OCI Functions, fit: close, notes: "Fn Project based; smaller trigger ecosystem."}
+  - id: paas-web-apps
+    name: Web application PaaS
+    description: Deploy application code to a managed runtime without managing servers.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS Elastic Beanstalk / AWS App Runner, fit: close}
+      azure: {service: Azure App Service, fit: exact}
+      gcp: {service: App Engine / Cloud Run, fit: close}
+      oci: {service: No direct PaaS web-app equivalent, fit: none, notes: "Use OKE, Container Instances or Compute with your own deployment tooling."}
+  - id: batch-computing
+    name: Batch computing
+    description: Managed scheduling of large numbers of batch or HPC jobs.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS Batch, fit: exact}
+      azure: {service: Azure Batch, fit: exact}
+      gcp: {service: Cloud Batch, fit: exact}
+      oci: {service: OCI HPC clusters with Compute, fit: partial, notes: "Strong HPC/RDMA cluster networking, but no first-party generic batch scheduler comparable to the others; commonly paired with Slurm."}
+  - id: vmware-hosting
+    name: Managed VMware environment
+    description: Run VMware vSphere workloads on cloud-hosted bare metal.
+    migration_complexity: low
+    lock_in_risk: medium
+    exec_note: Commercial and support terms are driven by Broadcom licensing; validate current offer terms with each vendor.
+    offerings:
+      aws: {service: VMware Cloud on AWS, fit: close, notes: "Sold and operated through Broadcom; verify current availability and purchase model."}
+      azure: {service: Azure VMware Solution, fit: exact}
+      gcp: {service: Google Cloud VMware Engine, fit: exact}
+      oci: {service: Oracle Cloud VMware Solution, fit: exact}
+  - id: hybrid-on-prem
+    name: Cloud-managed on-premises infrastructure
+    description: Vendor-managed cloud services running in the customer's own data center.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Key for data-residency and air-gap mandates; hardware commitments are multi-year.
+    offerings:
+      aws: {service: AWS Outposts, fit: exact}
+      azure: {service: Azure Local with Azure Arc, fit: exact}
+      gcp: {service: Google Distributed Cloud, fit: exact}
+      oci: {service: OCI Dedicated Region Cloud@Customer / Compute Cloud@Customer, fit: exact}

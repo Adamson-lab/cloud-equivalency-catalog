@@ -1,0 +1,17 @@
+name: Monthly catalog review
+on:
+  schedule: [{ cron: "0 8 1 * *" }]
+  workflow_dispatch:
+permissions:
+  issues: write
+jobs:
+  remind:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Open review issue
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh issue create --repo "$GITHUB_REPOSITORY" \
+            --title "Catalog review: $(date +%Y-%m)" \
+            --body "Cloud services are renamed, retired and launched constantly. Please re-check entries against current vendor docs (see CONTRIBUTING.md) and open PRs for any drift. Priority: entries with fit partial/none, deprecated services, and sovereign/government offerings."

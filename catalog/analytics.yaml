@@ -1,0 +1,74 @@
+category: analytics
+title: Data & Analytics
+entries:
+  - id: data-warehouse
+    name: Cloud data warehouse
+    description: Scalable columnar analytics database for BI and reporting.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: SQL dialect, stored logic and ecosystem integrations drive cost; data is portable, pipelines are not.
+    offerings:
+      aws: {service: Amazon Redshift, fit: exact}
+      azure: {service: Microsoft Fabric Warehouse / Azure Synapse Analytics, fit: exact, notes: "Microsoft is steering new analytics investment toward Fabric; verify Synapse roadmap."}
+      gcp: {service: BigQuery, fit: exact}
+      oci: {service: Oracle Autonomous Data Warehouse, fit: exact}
+  - id: event-streaming
+    name: Event streaming
+    description: Durable, ordered, high-throughput event ingestion.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: Amazon Kinesis Data Streams, fit: exact}
+      azure: {service: Azure Event Hubs, fit: exact}
+      gcp: {service: Pub/Sub, fit: close, notes: "Pub/Sub has no partition/offset model like Kafka-style logs."}
+      oci: {service: OCI Streaming, fit: exact}
+  - id: managed-kafka
+    name: Managed Apache Kafka
+    description: Hosted Kafka brokers with Kafka-protocol compatibility.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon MSK, fit: exact}
+      azure: {service: Event Hubs Kafka endpoint / HDInsight Kafka, fit: partial, notes: "Kafka-protocol endpoint on a different engine; some Kafka features are unsupported."}
+      gcp: {service: Managed Service for Apache Kafka, fit: exact}
+      oci: {service: OCI Streaming with Kafka compatibility, fit: partial, notes: "Kafka-compatible API on OCI Streaming, not a full Kafka cluster."}
+  - id: managed-spark
+    name: Managed big-data processing (Spark/Hadoop)
+    description: Managed clusters or serverless runtimes for Spark and Hadoop workloads.
+    migration_complexity: medium
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon EMR, fit: exact}
+      azure: {service: Azure Databricks / Synapse Spark / HDInsight, fit: close}
+      gcp: {service: Dataproc / Serverless for Apache Spark, fit: exact}
+      oci: {service: OCI Data Flow, fit: exact}
+  - id: etl-integration
+    name: Data integration / ETL
+    description: Managed pipelines to extract, transform and load data.
+    migration_complexity: high
+    lock_in_risk: high
+    offerings:
+      aws: {service: AWS Glue, fit: exact}
+      azure: {service: Azure Data Factory / Fabric Data Factory, fit: exact}
+      gcp: {service: Dataflow / Cloud Data Fusion, fit: close}
+      oci: {service: OCI Data Integration, fit: exact}
+  - id: bi-analytics
+    name: Business intelligence
+    description: Dashboards, self-service analytics and reporting.
+    migration_complexity: high
+    lock_in_risk: high
+    offerings:
+      aws: {service: Amazon QuickSight, fit: exact}
+      azure: {service: Power BI, fit: exact}
+      gcp: {service: Looker / Looker Studio, fit: exact}
+      oci: {service: Oracle Analytics Cloud, fit: exact}
+  - id: data-governance
+    name: Data catalog and governance
+    description: Metadata catalog, lineage, classification and access governance for data estates.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS Glue Data Catalog / Amazon DataZone / SageMaker Catalog, fit: close}
+      azure: {service: Microsoft Purview, fit: exact}
+      gcp: {service: Dataplex Universal Catalog, fit: exact}
+      oci: {service: OCI Data Catalog, fit: close}

@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cloud equivalency catalog file",
+  "type": "object",
+  "required": ["category", "title", "entries"],
+  "additionalProperties": false,
+  "properties": {
+    "category": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+    "title": { "type": "string", "minLength": 1 },
+    "entries": { "type": "array", "minItems": 1, "items": { "$ref": "#/$defs/entry" } }
+  },
+  "$defs": {
+    "offering": {
+      "type": "object",
+      "required": ["service", "fit"],
+      "additionalProperties": false,
+      "properties": {
+        "service": { "type": "string", "minLength": 1 },
+        "fit": { "enum": ["exact", "close", "partial", "none"] },
+        "notes": { "type": "string" }
+      }
+    },
+    "entry": {
+      "type": "object",
+      "required": ["id", "name", "description", "migration_complexity", "lock_in_risk", "offerings"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string", "pattern": "^[a-z][a-z0-9-]*$" },
+        "name": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "migration_complexity": { "enum": ["low", "medium", "high"] },
+        "lock_in_risk": { "enum": ["low", "medium", "high"] },
+        "exec_note": { "type": "string" },
+        "offerings": {
+          "type": "object",
+          "required": ["aws", "azure", "gcp", "oci"],
+          "additionalProperties": false,
+          "properties": {
+            "aws": { "$ref": "#/$defs/offering" },
+            "azure": { "$ref": "#/$defs/offering" },
+            "gcp": { "$ref": "#/$defs/offering" },
+            "oci": { "$ref": "#/$defs/offering" }
+          }
+        }
+      }
+    }
+  }
+}

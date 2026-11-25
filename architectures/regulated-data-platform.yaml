@@ -1,0 +1,19 @@
+id: regulated-data-platform
+title: Regulated bank data and analytics platform
+description: Private-connected analytics platform with customer-held keys, governed data and security analytics, the shape regulators scrutinize in exit-plan reviews.
+components:
+  - {key: link, capability: dedicated-interconnect, group: Connectivity}
+  - {key: hub, capability: transit-hub, group: Connectivity}
+  - {key: pe, capability: private-service-access, group: Connectivity}
+  - {key: stream, capability: event-streaming, group: Ingest}
+  - {key: lake, capability: object-storage, group: Storage}
+  - {key: spark, capability: managed-spark, group: Processing}
+  - {key: dw, capability: data-warehouse, group: Processing}
+  - {key: bi, capability: bi-analytics, group: Consumption}
+  - {key: catalog, capability: data-governance, group: Governance}
+  - {key: kms, capability: key-management, group: Security}
+  - {key: xkey, capability: customer-controlled-keys, group: Security}
+  - {key: iam, capability: cloud-iam, group: Security}
+  - {key: audit, capability: audit-logging, group: Security}
+  - {key: siem, capability: siem, group: Security}
+edges: [[link, hub], [hub, pe], [pe, lake], [stream, lake], [lake, spark], [spark, dw], [dw, bi], [catalog, dw], [xkey, kms], [kms, lake], [kms, dw], [iam, dw], [audit, siem]]

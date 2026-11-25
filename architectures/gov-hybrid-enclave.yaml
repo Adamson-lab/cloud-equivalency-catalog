@@ -1,0 +1,15 @@
+id: gov-hybrid-enclave
+title: Federal hybrid enclave
+description: Government-cloud enclave extended to on-premises infrastructure with HSM-backed keys and centralized security monitoring.
+components:
+  - {key: onprem, capability: hybrid-on-prem, group: Hybrid}
+  - {key: vpn, capability: vpn, group: Connectivity}
+  - {key: link, capability: dedicated-interconnect, group: Connectivity}
+  - {key: gov, capability: us-government-cloud, group: Enclave}
+  - {key: fw, capability: network-firewall, group: Enclave}
+  - {key: iam, capability: cloud-iam, group: Security}
+  - {key: kms, capability: key-management, group: Security}
+  - {key: hsm, capability: hsm, group: Security}
+  - {key: threat, capability: threat-detection, group: Security}
+  - {key: audit, capability: audit-logging, group: Security}
+edges: [[onprem, link], [onprem, vpn], [link, fw], [vpn, fw], [fw, gov], [iam, gov], [kms, gov], [hsm, kms], [gov, threat], [gov, audit]]

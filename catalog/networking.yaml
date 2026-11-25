@@ -1,0 +1,113 @@
+category: networking
+title: Networking & Edge
+entries:
+  - id: virtual-network
+    name: Virtual private network (VPC/VNet)
+    description: Isolated, software-defined private network with subnets, routing and security groups.
+    migration_complexity: medium
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon VPC, fit: exact}
+      azure: {service: Azure Virtual Network, fit: exact}
+      gcp: {service: Google VPC, fit: close, notes: "Global VPC model: subnets are regional, the network is global."}
+      oci: {service: OCI Virtual Cloud Network (VCN), fit: exact}
+  - id: application-load-balancer
+    name: Layer-7 load balancer
+    description: HTTP(S) load balancing with path/host routing and TLS termination.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: Application Load Balancer, fit: exact}
+      azure: {service: Azure Application Gateway, fit: exact}
+      gcp: {service: Cloud Load Balancing (Application Load Balancer), fit: exact}
+      oci: {service: OCI Load Balancer, fit: exact}
+  - id: network-load-balancer
+    name: Layer-4 load balancer
+    description: High-throughput TCP/UDP load balancing.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: Network Load Balancer, fit: exact}
+      azure: {service: Azure Load Balancer, fit: exact}
+      gcp: {service: Cloud Load Balancing (Network Load Balancer), fit: exact}
+      oci: {service: OCI Network Load Balancer, fit: exact}
+  - id: dns
+    name: Managed DNS
+    description: Authoritative DNS hosting with health-based routing.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon Route 53, fit: exact}
+      azure: {service: Azure DNS (with Traffic Manager), fit: close, notes: "Traffic steering is a separate service."}
+      gcp: {service: Cloud DNS, fit: close, notes: "Routing policies are available but less extensive than Route 53."}
+      oci: {service: OCI DNS (with Traffic Management Steering Policies), fit: close}
+  - id: cdn
+    name: Content delivery network
+    description: Globally distributed caching and edge delivery.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon CloudFront, fit: exact}
+      azure: {service: Azure Front Door, fit: exact}
+      gcp: {service: Cloud CDN, fit: exact}
+      oci: {service: No first-party general-purpose CDN, fit: none, notes: "Typically fronted by a partner CDN (e.g. Akamai) or a third-party provider."}
+  - id: dedicated-interconnect
+    name: Dedicated private connectivity
+    description: Private, non-internet circuit between customer network and the cloud.
+    migration_complexity: medium
+    lock_in_risk: low
+    offerings:
+      aws: {service: AWS Direct Connect, fit: exact}
+      azure: {service: Azure ExpressRoute, fit: exact}
+      gcp: {service: Cloud Interconnect, fit: exact}
+      oci: {service: OCI FastConnect, fit: exact}
+  - id: vpn
+    name: Site-to-site VPN
+    description: IPsec VPN connecting on-premises and cloud networks.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: AWS Site-to-Site VPN, fit: exact}
+      azure: {service: Azure VPN Gateway, fit: exact}
+      gcp: {service: Cloud VPN, fit: exact}
+      oci: {service: OCI Site-to-Site VPN, fit: exact}
+  - id: transit-hub
+    name: Network transit hub
+    description: Central routing hub connecting many networks and on-premises links.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS Transit Gateway, fit: exact}
+      azure: {service: Azure Virtual WAN, fit: exact}
+      gcp: {service: Network Connectivity Center, fit: close}
+      oci: {service: Dynamic Routing Gateway (DRG), fit: close}
+  - id: private-service-access
+    name: Private service endpoints
+    description: Access cloud and partner services over private IPs without internet exposure.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS PrivateLink, fit: exact}
+      azure: {service: Azure Private Link, fit: exact}
+      gcp: {service: Private Service Connect, fit: exact}
+      oci: {service: OCI Private Endpoints / Service Gateway, fit: close}
+  - id: network-firewall
+    name: Managed network firewall
+    description: Stateful, centrally managed firewall with threat-intelligence rules.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS Network Firewall, fit: exact}
+      azure: {service: Azure Firewall, fit: exact}
+      gcp: {service: Cloud Next Generation Firewall, fit: exact}
+      oci: {service: OCI Network Firewall, fit: exact, notes: "Built on a Palo Alto Networks engine."}
+  - id: waf
+    name: Web application firewall
+    description: Layer-7 protection against OWASP-class attacks and bots.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS WAF, fit: exact}
+      azure: {service: Azure Web Application Firewall, fit: exact}
+      gcp: {service: Cloud Armor, fit: exact}
+      oci: {service: OCI Web Application Firewall, fit: exact}

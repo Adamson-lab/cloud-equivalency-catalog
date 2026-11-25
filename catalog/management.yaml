@@ -1,0 +1,66 @@
+category: management
+title: Observability, Governance & Cost
+entries:
+  - id: monitoring-metrics
+    name: Metrics and monitoring
+    description: Collection, dashboards and alerting for infrastructure and application metrics.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: Amazon CloudWatch, fit: exact}
+      azure: {service: Azure Monitor, fit: exact}
+      gcp: {service: Cloud Monitoring, fit: exact}
+      oci: {service: OCI Monitoring, fit: exact}
+  - id: log-management
+    name: Log management and analytics
+    description: Central log collection, query and retention.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: Amazon CloudWatch Logs, fit: exact}
+      azure: {service: Azure Monitor Logs (Log Analytics), fit: exact}
+      gcp: {service: Cloud Logging, fit: exact}
+      oci: {service: OCI Logging / Logging Analytics, fit: exact}
+  - id: distributed-tracing
+    name: Application performance and tracing
+    description: Distributed tracing and application performance monitoring.
+    migration_complexity: medium
+    lock_in_risk: low
+    exec_note: OpenTelemetry instrumentation makes this layer largely portable.
+    offerings:
+      aws: {service: AWS X-Ray / CloudWatch Application Signals, fit: exact}
+      azure: {service: Application Insights, fit: exact}
+      gcp: {service: Cloud Trace / Cloud Profiler, fit: exact}
+      oci: {service: OCI Application Performance Monitoring, fit: close}
+  - id: multi-account-governance
+    name: Multi-account organization and guardrails
+    description: Hierarchical grouping of accounts or subscriptions with preventive policy and landing zones.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Hierarchy models differ (accounts vs subscriptions vs projects vs compartments); your org structure must be redesigned, not copied.
+    offerings:
+      aws: {service: AWS Organizations / Control Tower / SCPs, fit: exact}
+      azure: {service: Management Groups / Azure Policy / Landing Zones, fit: exact}
+      gcp: {service: Resource Manager organization / Organization Policy Service, fit: exact}
+      oci: {service: Tenancy compartments / Security Zones, fit: close, notes: "Compartment model is simpler; fewer prebuilt landing-zone accelerators."}
+  - id: configuration-compliance
+    name: Resource inventory and configuration compliance
+    description: Inventory of resources with continuous configuration-drift and compliance evaluation.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS Config, fit: exact}
+      azure: {service: Azure Policy / Azure Resource Graph, fit: exact}
+      gcp: {service: Cloud Asset Inventory / Security Health Analytics, fit: close}
+      oci: {service: OCI Search / Cloud Guard detectors, fit: partial, notes: "No single configuration-timeline and rule-evaluation service comparable to AWS Config."}
+  - id: cost-management
+    name: Cost management and FinOps tooling
+    description: Cost visibility, budgets, anomaly detection and allocation.
+    migration_complexity: low
+    lock_in_risk: low
+    exec_note: Normalize billing exports (FOCUS format) to compare spend across providers.
+    offerings:
+      aws: {service: AWS Cost Explorer / Cost and Usage Reports / Budgets, fit: exact}
+      azure: {service: Microsoft Cost Management, fit: exact}
+      gcp: {service: Cloud Billing reports / Budgets / BigQuery export, fit: exact}
+      oci: {service: OCI Cost Analysis / Budgets, fit: close}

@@ -1,0 +1,64 @@
+category: storage
+title: Storage & Backup
+entries:
+  - id: object-storage
+    name: Object storage
+    description: Durable, API-accessed storage for unstructured data at any scale.
+    migration_complexity: low
+    lock_in_risk: low
+    exec_note: S3 API compatibility is widespread; data egress fees, not technology, dominate exit cost.
+    offerings:
+      aws: {service: Amazon S3, fit: exact}
+      azure: {service: Azure Blob Storage, fit: exact}
+      gcp: {service: Cloud Storage, fit: exact}
+      oci: {service: OCI Object Storage, fit: exact, notes: "Offers an S3-compatible API endpoint."}
+  - id: block-storage
+    name: Block storage
+    description: Network-attached volumes for VMs and databases.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon EBS, fit: exact}
+      azure: {service: Azure Managed Disks, fit: exact}
+      gcp: {service: Persistent Disk / Hyperdisk, fit: exact}
+      oci: {service: OCI Block Volume, fit: exact}
+  - id: file-storage
+    name: Managed file storage (NFS/SMB)
+    description: Shared POSIX or SMB file systems.
+    migration_complexity: medium
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon EFS / Amazon FSx, fit: exact}
+      azure: {service: Azure Files / Azure NetApp Files, fit: exact}
+      gcp: {service: Filestore, fit: close, notes: "NFS only; SMB needs NetApp Volumes or third-party."}
+      oci: {service: OCI File Storage, fit: close, notes: "NFS focus; SMB support is more limited."}
+  - id: archive-storage
+    name: Archive / cold storage
+    description: Lowest-cost storage tier for rarely accessed data with retrieval delay or fee.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon S3 Glacier storage classes, fit: exact}
+      azure: {service: Blob Storage Archive tier, fit: exact}
+      gcp: {service: Cloud Storage Archive class, fit: exact}
+      oci: {service: OCI Archive Storage, fit: exact}
+  - id: backup-service
+    name: Centralized backup service
+    description: Policy-based backup across multiple workload types with retention and vaulting.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS Backup, fit: exact}
+      azure: {service: Azure Backup, fit: exact}
+      gcp: {service: Backup and DR Service, fit: close}
+      oci: {service: OCI volume/boot volume backups and database backup, fit: partial, notes: "Per-service backup policies; no single cross-workload backup vault comparable to AWS Backup or Azure Backup."}
+  - id: offline-data-transfer
+    name: Offline bulk data transfer
+    description: Physical appliances to move very large datasets into the cloud.
+    migration_complexity: medium
+    lock_in_risk: low
+    offerings:
+      aws: {service: AWS Snow Family, fit: exact}
+      azure: {service: Azure Data Box, fit: exact}
+      gcp: {service: Transfer Appliance, fit: exact}
+      oci: {service: OCI Data Transfer Service, fit: close, notes: "Availability varies by region."}

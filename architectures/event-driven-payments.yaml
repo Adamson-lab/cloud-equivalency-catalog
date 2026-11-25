@@ -1,0 +1,15 @@
+id: event-driven-payments
+title: Event-driven payments processing
+description: API-fronted, event-driven payment flow with orchestration, HSM-backed signing and low-latency NoSQL state.
+components:
+  - {key: api, capability: api-gateway, group: Entry}
+  - {key: fn, capability: functions, group: Compute}
+  - {key: svc, capability: serverless-containers, group: Compute}
+  - {key: flow, capability: workflow-orchestration, group: Orchestration}
+  - {key: bus, capability: event-bus, group: Messaging}
+  - {key: queue, capability: message-queue, group: Messaging}
+  - {key: fanout, capability: pub-sub, group: Messaging}
+  - {key: state, capability: nosql-keyvalue, group: Data}
+  - {key: hsm, capability: hsm, group: Security}
+  - {key: audit, capability: audit-logging, group: Security}
+edges: [[api, fn], [fn, bus], [bus, flow], [flow, queue], [queue, svc], [svc, state], [svc, hsm], [flow, fanout], [fn, audit]]

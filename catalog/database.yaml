@@ -1,0 +1,76 @@
+category: database
+title: Databases
+entries:
+  - id: managed-relational
+    name: Managed relational database
+    description: Hosted MySQL, PostgreSQL, SQL Server and similar engines with automated patching and backups.
+    migration_complexity: medium
+    lock_in_risk: low
+    exec_note: Standard engines migrate with native tooling; the risk is in extensions, versions and operational tooling.
+    offerings:
+      aws: {service: Amazon RDS, fit: exact}
+      azure: {service: Azure SQL Database / Azure Database for PostgreSQL and MySQL, fit: exact}
+      gcp: {service: Cloud SQL, fit: exact}
+      oci: {service: OCI Database with MySQL HeatWave / PostgreSQL, fit: close, notes: "Strongest for Oracle and MySQL; SQL Server is generally run on Compute rather than as a managed service."}
+  - id: cloud-native-relational
+    name: Cloud-native relational database
+    description: Relational engines re-architected for cloud with decoupled storage and fast failover.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Wire-compatible, but performance features, replication and tooling are proprietary.
+    offerings:
+      aws: {service: Amazon Aurora, fit: exact}
+      azure: {service: Azure SQL Hyperscale / Azure Database for PostgreSQL Flexible Server, fit: close}
+      gcp: {service: AlloyDB for PostgreSQL, fit: exact}
+      oci: {service: Oracle Autonomous Database, fit: close, notes: "Oracle-engine-centric; different architecture and migration path."}
+  - id: globally-distributed-sql
+    name: Globally distributed relational database
+    description: Strongly consistent, horizontally scalable SQL with multi-region writes.
+    migration_complexity: high
+    lock_in_risk: high
+    offerings:
+      aws: {service: Amazon Aurora DSQL, fit: close, notes: "Newer service; validate feature maturity and regional availability."}
+      azure: {service: Azure Cosmos DB (multi-region writes), fit: partial, notes: "NoSQL data model, not relational SQL with distributed transactions."}
+      gcp: {service: Cloud Spanner, fit: exact}
+      oci: {service: Globally Distributed Autonomous Database, fit: close, notes: "Sharded Oracle architecture; operational model differs from Spanner."}
+  - id: nosql-keyvalue
+    name: Key-value / wide-column NoSQL
+    description: Massively scalable low-latency NoSQL with single-digit-ms access.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Data models and access patterns are proprietary; plan application rewrite.
+    offerings:
+      aws: {service: Amazon DynamoDB, fit: exact}
+      azure: {service: Azure Cosmos DB for NoSQL / Table, fit: exact}
+      gcp: {service: Cloud Bigtable / Firestore, fit: close}
+      oci: {service: OCI NoSQL Database, fit: close}
+  - id: mongodb-compatible
+    name: MongoDB-compatible document database
+    description: Managed document store exposing a MongoDB-compatible API.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: Amazon DocumentDB (with MongoDB compatibility), fit: close, notes: "Compatibility is partial; verify required MongoDB features."}
+      azure: {service: Azure Cosmos DB for MongoDB, fit: close}
+      gcp: {service: Firestore with MongoDB compatibility, fit: close}
+      oci: {service: Autonomous JSON Database / OCI Database with MongoDB API, fit: close}
+  - id: in-memory-cache
+    name: Managed in-memory cache
+    description: Redis- or Valkey-compatible managed caching.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon ElastiCache / MemoryDB, fit: exact}
+      azure: {service: Azure Managed Redis (successor to Azure Cache for Redis), fit: exact}
+      gcp: {service: Memorystore (Redis / Valkey), fit: exact}
+      oci: {service: OCI Cache, fit: exact}
+  - id: graph-database
+    name: Graph database
+    description: Managed graph storage and query.
+    migration_complexity: high
+    lock_in_risk: medium
+    offerings:
+      aws: {service: Amazon Neptune, fit: exact}
+      azure: {service: Azure Cosmos DB for Apache Gremlin, fit: close, notes: "Gremlin API only; verify roadmap and feature needs."}
+      gcp: {service: Spanner Graph, fit: close, notes: "Graph queries on Spanner; different model than a dedicated graph engine."}
+      oci: {service: Oracle Database graph features (Autonomous Database), fit: partial, notes: "Graph is a feature of the Oracle engine, not a standalone service."}

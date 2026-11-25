@@ -1,0 +1,45 @@
+category: ai-ml
+title: AI & Machine Learning
+entries:
+  - id: ml-platform
+    name: Machine learning platform
+    description: Managed environment to build, train, deploy and monitor ML models.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Pipelines, feature stores and model registries are proprietary; models themselves (ONNX, PyTorch) are portable.
+    offerings:
+      aws: {service: Amazon SageMaker AI, fit: exact}
+      azure: {service: Azure Machine Learning, fit: exact}
+      gcp: {service: Vertex AI, fit: exact}
+      oci: {service: OCI Data Science, fit: close}
+  - id: foundation-models
+    name: Managed foundation-model / generative AI service
+    description: API access to hosted large language and multimodal models with enterprise controls.
+    migration_complexity: medium
+    lock_in_risk: high
+    exec_note: Model availability differs sharply by provider and region; prompts, guardrails and evaluation sets need re-validation after any move.
+    offerings:
+      aws: {service: Amazon Bedrock, fit: exact}
+      azure: {service: Azure AI Foundry (including Azure OpenAI), fit: exact}
+      gcp: {service: Vertex AI (Model Garden / Gemini), fit: exact}
+      oci: {service: OCI Generative AI, fit: close, notes: "Smaller model catalog; verify required models and regions."}
+  - id: document-ai
+    name: Document extraction (OCR and forms)
+    description: Extract text, tables and fields from documents and images.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: Amazon Textract, fit: exact}
+      azure: {service: Azure AI Document Intelligence, fit: exact}
+      gcp: {service: Document AI, fit: exact}
+      oci: {service: OCI Document Understanding, fit: exact}
+  - id: speech-services
+    name: Speech-to-text and text-to-speech
+    description: Managed speech recognition and synthesis.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: Amazon Transcribe / Amazon Polly, fit: exact}
+      azure: {service: Azure AI Speech, fit: exact}
+      gcp: {service: Speech-to-Text / Text-to-Speech, fit: exact}
+      oci: {service: OCI Speech, fit: partial, notes: "Primarily speech-to-text; text-to-speech coverage is narrower."}

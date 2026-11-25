@@ -1,0 +1,106 @@
+category: security
+title: Identity, Security & Compliance
+entries:
+  - id: cloud-iam
+    name: Cloud identity and access management
+    description: Authentication, authorization and policy for cloud resources and users.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Policy languages and role models are proprietary. This is among the hardest layers to port; budget for redesign.
+    offerings:
+      aws: {service: AWS IAM / IAM Identity Center, fit: exact}
+      azure: {service: Microsoft Entra ID with Azure RBAC, fit: exact}
+      gcp: {service: Cloud IAM, fit: exact}
+      oci: {service: OCI IAM (identity domains), fit: exact}
+  - id: key-management
+    name: Key management service
+    description: Managed creation, storage and rotation of encryption keys.
+    migration_complexity: medium
+    lock_in_risk: medium
+    exec_note: Keys generated inside a managed KMS generally cannot be exported; plan key import or re-encryption.
+    offerings:
+      aws: {service: AWS KMS, fit: exact}
+      azure: {service: Azure Key Vault (Keys), fit: exact}
+      gcp: {service: Cloud KMS, fit: exact}
+      oci: {service: OCI Vault, fit: exact}
+  - id: hsm
+    name: Dedicated HSM
+    description: Single-tenant FIPS-validated hardware security module under customer control.
+    migration_complexity: high
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS CloudHSM, fit: exact}
+      azure: {service: Azure Dedicated HSM / Managed HSM, fit: exact}
+      gcp: {service: Cloud HSM / Cloud External Key Manager, fit: close}
+      oci: {service: OCI Dedicated KMS (HSM), fit: exact}
+  - id: secrets-management
+    name: Secrets management
+    description: Central storage and rotation of credentials, tokens and API keys.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: AWS Secrets Manager, fit: exact}
+      azure: {service: Azure Key Vault (Secrets), fit: exact}
+      gcp: {service: Secret Manager, fit: exact}
+      oci: {service: OCI Vault (Secrets), fit: exact}
+  - id: threat-detection
+    name: Cloud threat detection
+    description: Continuous detection of malicious activity from logs, network and runtime signals.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: Amazon GuardDuty, fit: exact}
+      azure: {service: Microsoft Defender for Cloud, fit: exact}
+      gcp: {service: Security Command Center (Event Threat Detection), fit: exact}
+      oci: {service: OCI Threat Intelligence / Cloud Guard, fit: close}
+  - id: cspm
+    name: Cloud security posture management
+    description: Continuous misconfiguration and compliance assessment across accounts.
+    migration_complexity: medium
+    lock_in_risk: medium
+    offerings:
+      aws: {service: AWS Security Hub, fit: exact}
+      azure: {service: Microsoft Defender for Cloud (CSPM), fit: exact}
+      gcp: {service: Security Command Center, fit: exact}
+      oci: {service: OCI Cloud Guard / Security Zones, fit: close}
+  - id: siem
+    name: Cloud-native SIEM / SecOps
+    description: Security analytics, investigation and response across enterprise telemetry.
+    migration_complexity: high
+    lock_in_risk: high
+    offerings:
+      aws: {service: Amazon Security Lake with partner SIEM / Amazon Detective, fit: partial, notes: "Data lake plus investigation tooling; no first-party full SIEM equivalent."}
+      azure: {service: Microsoft Sentinel, fit: exact}
+      gcp: {service: Google Security Operations, fit: exact}
+      oci: {service: OCI Logging Analytics with partner SIEM, fit: partial, notes: "Log analytics, not a full SIEM/SOAR suite."}
+  - id: ddos-protection
+    name: DDoS protection
+    description: Network- and application-layer DDoS mitigation.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: AWS Shield (Standard / Advanced), fit: exact}
+      azure: {service: Azure DDoS Protection, fit: exact}
+      gcp: {service: Cloud Armor (Adaptive Protection), fit: exact}
+      oci: {service: Built-in network DDoS protection and OCI WAF, fit: close, notes: "Baseline protection is integrated; no separately sold advanced tier like Shield Advanced."}
+  - id: certificate-management
+    name: Managed certificates
+    description: Issuance and automatic renewal of TLS certificates.
+    migration_complexity: low
+    lock_in_risk: low
+    offerings:
+      aws: {service: AWS Certificate Manager, fit: exact}
+      azure: {service: Azure Key Vault Certificates / App Service Managed Certificates, fit: close}
+      gcp: {service: Certificate Manager, fit: exact}
+      oci: {service: OCI Certificates, fit: exact}
+  - id: audit-logging
+    name: Control-plane audit logging
+    description: Immutable record of API activity for forensics and regulatory evidence.
+    migration_complexity: low
+    lock_in_risk: low
+    exec_note: Examiners ask for this first. Confirm retention, immutability and export to your archive.
+    offerings:
+      aws: {service: AWS CloudTrail, fit: exact}
+      azure: {service: Azure Activity Log, fit: exact}
+      gcp: {service: Cloud Audit Logs, fit: exact}
+      oci: {service: OCI Audit, fit: exact}

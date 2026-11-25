@@ -1,0 +1,36 @@
+category: sovereign
+title: Government, Sovereign & Regulated Cloud
+entries:
+  - id: us-government-cloud
+    name: US government cloud environment
+    description: Isolated regions or controls built for US federal, state and defense workloads.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Authorization status is per service and per environment. Always check the FedRAMP Marketplace and DoD authorizations directly.
+    offerings:
+      aws: {service: AWS GovCloud (US) / AWS Secret and Top Secret regions, fit: exact}
+      azure: {service: Azure Government / Azure Government Secret and Top Secret, fit: exact}
+      gcp: {service: Assured Workloads / Google Distributed Cloud air-gapped, fit: partial, notes: "Compliance controls on commercial regions plus separate air-gapped offerings, not a dedicated government region family like GovCloud."}
+      oci: {service: Oracle Cloud Government (US Government regions), fit: close, notes: "Government and defense realms exist; verify the authorization scope of the services you need."}
+  - id: eu-sovereign-cloud
+    name: EU sovereign cloud
+    description: Cloud operated within the EU, with EU-resident operations and governance controls.
+    migration_complexity: high
+    lock_in_risk: high
+    exec_note: Models differ materially (separate partition vs partner-operated vs controls on global cloud). Legal review is required, not just technical review.
+    offerings:
+      aws: {service: AWS European Sovereign Cloud, fit: close, notes: "Separate EU-operated partition; verify service coverage versus standard regions."}
+      azure: {service: Microsoft Sovereign Cloud (public and private), fit: close, notes: "Combination of policy controls, partner options and private deployments."}
+      gcp: {service: "Google Cloud sovereign offerings (partner-operated, data boundary, air-gapped)", fit: close, notes: "Delivered through multiple models including trusted partners."}
+      oci: {service: Oracle EU Sovereign Cloud / Oracle Alloy / Dedicated Region, fit: close, notes: "Includes partner-operated and customer-dedicated options."}
+  - id: customer-controlled-keys
+    name: Customer-held external key control
+    description: Encryption keys held outside the provider so the provider cannot decrypt without customer consent.
+    migration_complexity: high
+    lock_in_risk: medium
+    exec_note: A common regulator and sovereignty ask; test failure modes, since losing the external key store means losing the data.
+    offerings:
+      aws: {service: AWS KMS External Key Store (XKS), fit: exact}
+      azure: {service: Azure Key Vault Managed HSM / Customer Key controls, fit: close}
+      gcp: {service: Cloud External Key Manager (EKM), fit: exact}
+      oci: {service: OCI External Key Management Service, fit: close}
